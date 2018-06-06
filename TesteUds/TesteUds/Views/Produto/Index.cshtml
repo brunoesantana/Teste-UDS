@@ -1,0 +1,108 @@
+﻿@model ProdutoModel
+
+@{
+    ViewBag.Title = "Produto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-12 mainContainer">
+    @{
+        if (TempData["Mensagem"] != null)
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <ul>
+                            <li>@TempData["Mensagem"]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+    <h1><span>Listar Produtos</span></h1>
+
+    @using (Html.BeginForm("Index", "Produto", FormMethod.Post))
+    {
+        <div class="row">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(m => m.Filtro.Codigo)
+                @Html.TextBoxFor(m => m.Filtro.Codigo, new { @class = "form-control", maxlength = "3" })
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(m => m.Filtro.Nome)
+                @Html.TextBoxFor(m => m.Filtro.Nome, new { @class = "form-control", maxlength = "100" })
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(m => m.Filtro.PrecoUnitario)
+                @Html.TextBoxFor(m => m.Filtro.PrecoUnitario, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-2" style="margin-top: 25px;">
+                <button class="btn btn-secundary" onclick="window.location.href='/Produto'" type="button">Limpar</button>
+            </div>
+
+            <div class="form-group col-md-2" style="margin-top: 25px;">
+                <button class="btn btn-primary" type="submit">Pesquisar</button>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-2">
+                <button class="btn btn-secundary" onclick="window.location.href='/Produto/Novo'" type="button">Novo</button>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="col-md-12 mainContainer">
+    <h1><span>Produtos</span></h1>
+    <div class="table-responsive">
+        <table class="table table-hover table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>Preço Unitário (R$)</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Produtos != null && Model.Produtos.Count > 0)
+                {
+                    foreach (var produto in Model.Produtos)
+                    {
+                        <tr>
+                            <td>@produto.Codigo</td>
+                            <td>@produto.Nome</td>
+                            <td class="field-right">@Html.Raw(string.Format("{0:C}", produto.PrecoUnitario).Replace("R$", ""))</td>
+                            <td style="text-align:center;">
+                                <a href="javascript:void(0)" id="linkEditar@(produto.Id)" data-id="@produto.Id"><span class="glyphicon glyphicon-pencil"></span></a>
+                            </td>
+                            <td style="text-align:center;">
+                                <a href="javascript:void(0)" id="linkExcluir@(produto.Id)" data-id="@produto.Id"><span class="glyphicon glyphicon-minus"></span></a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr><td colspan="6">Sem produtos a listar.</td></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="removeConfirmation" title="Confirmar Exclusão" hidden>
+    <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Deseja realmente remover este produto?</p>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/Scripts/Produto")
+}

@@ -1,0 +1,18 @@
+﻿@model ProdutoViewModel
+
+@{
+    ViewBag.Title = "Editar Produto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-12 mainContainer">
+    <h1><span>Cadastro de Produto</span></h1>
+    @using (Html.BeginForm("Editar", "Produto", null, FormMethod.Post))
+    {
+        @Html.Partial("_Form", Model)
+    }
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,8 @@
+C:\Users\ASUS\Desktop\TesteUds\TesteUds.Business\bin\Debug\TesteUds.Business.dll.config
+C:\Users\ASUS\Desktop\TesteUds\TesteUds.Business\bin\Debug\TesteUds.Business.dll
+C:\Users\ASUS\Desktop\TesteUds\TesteUds.Business\bin\Debug\TesteUds.Business.pdb
+C:\Users\ASUS\Desktop\TesteUds\TesteUds.Business\bin\Debug\EntityFramework.dll
+C:\Users\ASUS\Desktop\TesteUds\TesteUds.Business\bin\Debug\EntityFramework.xml
+C:\Users\ASUS\Desktop\TesteUds\TesteUds.Business\obj\Debug\TesteUds.Business.csprojResolveAssemblyReference.cache
+C:\Users\ASUS\Desktop\TesteUds\TesteUds.Business\obj\Debug\TesteUds.Business.dll
+C:\Users\ASUS\Desktop\TesteUds\TesteUds.Business\obj\Debug\TesteUds.Business.pdb
